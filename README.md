@@ -1,6 +1,5 @@
 **Differential Cryptanalysis of  Feal-4**  
-**Name: Dhanushkumar S G**  
-**StudentNo: 11129**  
+
 **Introduction**  
 To crack FEAL-4 using differential cryptanalysis, the attack begins with selecting a pair of chosen plaintexts P0P0​ and P1P1​, and obtaining their corresponding ciphertexts C0C0​ and C1C1​. From these, intermediate values Z′, Y0​, and Y1​are computed. For each possible value of the subkey K3​, potential intermediate values Z0​ and Z1​ are calculated, and the condition Z′=Z0⊕Z1 is checked. This results in a set of candidate values for K3​. To reduce the number of candidates, four or higher pairs of chosen plaintexts are used, which helps eliminate incorrect subkey guesses. In the secondary phase, the surviving candidates are further tested, refining the list of potential subkeys. Once K3​ is identified, the process moves to "unzipping" the cipher to recover the remaining subkeys. Using K3​, the subkey K2​is determined, and the same process continues to recover K1​, K0​, K4​, and K5​. This method significantly reduces the computational complexity compared to brute-force approaches by narrowing down the key space efficiently through differential analysis.
 
@@ -60,15 +59,7 @@ M(A) \= M(a0, a1, a2, a3) \= (a2, a0 ⊕ a1, a2 ⊕ a3, a1)
 7. **Logging Results**:  
    Throughout the process, the program logs the number of candidate keys found for each round, the specific keys tested, and the time taken to crack each round. The results are output to the console, showing progress at each step.
 
-**Keys Obtained**  
-K3 Primary Phase keys Obtained: 6cff, ec7f  
-K3 Secondary Phase keys Obtained: 0x4f238976, 0xcfa309f6, 0x4f2309f6, 0xcfa38976  
-K2 Primary Phase keys Obtained: f96d, fb6d, f96f, fb6f, 79ed, 7bed, 79ef, 7bef  
-K2 Secondary Phase keys Obtained: 0x9f22e41, 0x9f2aec1, 0x89722e41, 0x8972aec1  
-K1 Primary Phase keys Obtained: 587900, 5a7900, d8f900, daf900, 587b00, 5a7b00, d8fb00, dafb00  
-K1 Secondary Phase keys Obtained: 0xc79f87fe, 0x471f077e, 0xc79f87fc, 0x471f077c, 0xc59f87fe, 0x451f077e, 0xc59f87fc,0x451f077c, 0xc79f077e, 0x471f87fe, 0xc79f077c, 0x471f87fc, 0xc59f077e, 0x451f87fe,0xc59f077c, 0x451f87fc.  
-K0 Primary Phase keys Obtained: 856900, 876900, 856b00, 876b00, 5e900, 7e900, 5eb00, 7eb00  
-K0 Secondary Phase keys Obtained:0x98c2148, 0x890ca1c8, 0x98c214a, 0x890ca1ca, 0x8b0ca1c8, 0xb8c2148, 0x8b0ca1ca, 0xb8c214a,0x98ca1c8, 0x890c2148, 0x98ca1ca, 0x890c214a, 0x8b0c2148, 0xb8ca1c8, 0x8b0c214a, 0xb8ca1ca.
+
 
 **Conclusion**  
 The code was executed successfully and was able to store the keys in a separate file called keys.txt  
