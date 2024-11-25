@@ -297,18 +297,9 @@ void decryptHighestRound(uint crackedKey) {
 int main(int argc, char **argv) {
     cout << "Differential Cryptanalysis of FEAL-4 (Two-Phase Attack)\n\n";
 
-    if (argc == 1) {
-        num_plaintexts = 12;
-    } else if (argc == 2) {
-        num_plaintexts = atoi(argv[1]);
-    } else {
-        cout << "Usage: " << argv[0] << " [Number of chosen plaintexts]\n";
-        return 0;
-    }
 
-    uint startTime = time(NULL);
-
-    // Round 4
+    num_plaintexts = 12;
+    
     cout << "Round 4: To find K3\n\n";
     generatePlaintextCiphertextPairs(0x8080000080800000ULL);
     decryptLastOperation();
@@ -337,7 +328,7 @@ int main(int argc, char **argv) {
         vector<uint32_t> candidates2 = crackHighestRound(0x02000000U);
         if (candidates2.empty()) {
             cout << "  Failed to find K2 for K3 = 0x" << hex << crackedKey3 << "\n";
-            continue;
+            continue; 
         }
         cout << "  Found " << candidates2.size() << " candidates for K2\n";
         for (uint32_t candidate : candidates2) {
@@ -350,7 +341,7 @@ int main(int argc, char **argv) {
         for (uint32_t crackedKey2 : candidates2) {
             cout << "Testing K2 = 0x" << hex << crackedKey2 << " with K3 = 0x" << crackedKey3 << "\n";
 
-            // Round 2
+            // Round 2 
             cout << "Round 2: To find K1\n";
             generatePlaintextCiphertextPairs(0x0000000002000000LL);
             decryptLastOperation();
@@ -388,7 +379,7 @@ int main(int argc, char **argv) {
                     unsigned long guessK5 = 0;
                     int c;
                     for(c = 0; c < 12; c++)
-                    {
+                    { 
                             unsigned long plainLeft0 = getLeftHalf(plaintext0[c]);
                             unsigned long plainRight0 = getRightHalf(plaintext0[c]);
                             unsigned long cipherLeft0 = getLeftHalf(ciphertext0[c]);
@@ -427,7 +418,6 @@ int main(int argc, char **argv) {
     }
 
     cout << "Exhausted all candidates without recovering a valid full key.\n";
-    uint endTime = time(NULL);
-    cout << "\nTotal attack time: " << int(endTime - startTime) << " seconds\n";
+   
     return 0;
 }
